@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Persona AI — Chat with Hitesh or Piyush</title>
+  <meta name="description" content="AI-powered chat app that simulates conversations with Hitesh Choudhary and Piyush Garg using their real teaching style and personality." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background effects -->
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-grid"></div>
+
+  <div class="app-layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <span class="logo-icon">🤖</span>
+          <span class="logo-text">Persona AI</span>
+        </div>
+      </div>
+
+      <div class="persona-section">
+        <p class="section-label">Choose Persona</p>
+
+        <button class="persona-card active" id="btn-hitesh" onclick="switchPersona('hitesh')">
+          <div class="persona-avatar hitesh-avatar">HC</div>
+          <div class="persona-info">
+            <span class="persona-name">Hitesh Choudhary</span>
+            <span class="persona-tag">Chai aur Code 🍵</span>
+          </div>
+          <div class="persona-indicator" id="ind-hitesh"></div>
+        </button>
+
+        <button class="persona-card" id="btn-piyush" onclick="switchPersona('piyush')">
+          <div class="persona-avatar piyush-avatar">PG</div>
+          <div class="persona-info">
+            <span class="persona-name">Piyush Garg</span>
+            <span class="persona-tag">Build. Ship. Learn. 🚀</span>
+          </div>
+          <div class="persona-indicator" id="ind-piyush"></div>
+        </button>
+      </div>
+
+      <div class="sidebar-actions">
+        <button class="action-btn" id="btn-new-chat" onclick="newChat()">
+          <span>＋</span> New Chat
+        </button>
+      </div>
+
+      <div class="sidebar-info">
+        <div class="info-badge">
+          <span class="info-dot"></span>
+          <span id="status-text">Connected</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Main Chat Area ── -->
+    <main class="chat-area">
+
+      <!-- Header -->
+      <header class="chat-header">
+        <button class="menu-toggle" id="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="chat-header-persona" id="header-persona">
+          <div class="header-avatar hitesh-avatar" id="header-avatar">HC</div>
+          <div>
+            <p class="header-name" id="header-name">Hitesh Choudhary</p>
+            <p class="header-subtitle" id="header-subtitle">Chai aur Code · Online</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="thinking-badge" id="thinking-badge" style="display:none;">
+            <span class="thinking-dot"></span>
+            <span>Thinking...</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Messages -->
+      <div class="messages-container" id="messages-container">
+        <div class="welcome-screen" id="welcome-screen">
+          <div class="welcome-avatar hitesh-avatar" id="welcome-avatar">HC</div>
+          <h1 class="welcome-title" id="welcome-title">Hanji! Kya poochna hai? 🍵</h1>
+          <p class="welcome-sub" id="welcome-sub">Hitesh Choudhary ke saath baat karo — coding, career, ya kuch bhi!</p>
+          <div class="suggestion-chips" id="suggestion-chips">
+            <button class="chip" onclick="sendSuggestion(this)">DSA seekhne ka best tarika kya hai?</button>
+            <button class="chip" onclick="sendSuggestion(this)">Mujhe web development sikhao</button>
+            <button class="chip" onclick="sendSuggestion(this)">Job kaise milegi as a fresher?</button>
+            <button class="chip" onclick="sendSuggestion(this)">React vs Next.js — kya use karoon?</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="input-area">
+        <div class="input-wrapper">
+          <textarea
+            id="user-input"
+            class="user-input"
+            placeholder="Kuch bhi poochho..."
+            rows="1"
+            onkeydown="handleKey(event)"
+            oninput="autoResize(this)"
+          ></textarea>
+          <button class="send-btn" id="send-btn" onclick="sendMessage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 2L11 13" /><path d="M22 2L15 22 11 13 2 9l20-7z" />
+            </svg>
+          </button>
+        </div>
+        <p class="input-hint">Enter to send · Shift+Enter for new line</p>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="client.js"></script>
+</body>
+</html>
